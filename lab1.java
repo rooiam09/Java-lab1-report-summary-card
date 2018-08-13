@@ -19,33 +19,31 @@ public class lab1 {
             writer.newLine();
             writer.write("--------  --  -----------------------------  ---  --  ---  --  ---  ---  --");
             writer.newLine();
-                   
             int data[]=new int [15];
 			while((thisLine=reader.readLine())!=null)
 			 {
-				
-				count++;
-				StringTokenizer token = new StringTokenizer(thisLine);
+				count++;						//to count to total no of students
+				StringTokenizer token = new StringTokenizer(thisLine);			//allows string to break into tokens in a line
 				for(int j=0;j<15;j++)
 				{
-			    String s = token.nextToken();
-			    data[j]=Integer.parseInt(s);
+					String s = token.nextToken();
+					data[j]=Integer.parseInt(s);				//convert string to int
 				}
+				
 				int total =0;			//Sum of all assignment marks
 				for(int j=2;j<12;j++)
 					total=total+data[j];
 				
-				int Pts=0;				//
+				int Pts=0;				//Points in report card
 				for(int j=1;j<15;j++)
 			    	Pts=Pts+data[j];
-				if(Pts>max)
+				if(Pts>max) 			//max returns max points scored 
 					max=Pts;
 				
-				pct=((Pts*100)/420);
-				totper=totper+pct;
-			
+				pct=((Pts*100)/420);		//pct is percentage
+				totper=totper+pct;			//total percentage of class for finding average percentage
 				
-				if(Math.round(pct)>=90)
+				if(Math.round(pct)>=90)			//Math.round for rounding off to close numeral
 				{grade='A';
 				a++;
 				}
@@ -65,8 +63,8 @@ public class lab1 {
 					grade='F';
 					f++;
 				}
-				if(data[0]/10000000<1) {
-					pre="0"+Integer.toString(data[0]);
+				if(data[0]/10000000<1) {			//to check if roll no if starting with 0
+					pre="0"+Integer.toString(data[0]);			//then we add 0 and add it to roll no converting it to string
 					writer.write(pre+"  ");
 					}
 				else
@@ -89,15 +87,12 @@ public class lab1 {
 				writer.write(Math.round(Pts)+"  ");
 				writer.write(" "+Math.round(pct)+"  ");
 				writer.write(" "+grade);
-				writer.newLine();
-				
+				writer.newLine();	
 			 }
-
-            
 			writer.newLine();
-			writer.write("Summary of Report");
+			writer.write("-----Summary of Report-----");
 			writer.newLine();
-			writer.write("Average total point percent of all students: "+totper/count);
+			writer.write("Average total point percent of all students: "+totper/count+" %");
 			writer.newLine();
 			writer.write("Number of A's = "+a);
 			writer.newLine();
@@ -112,18 +107,10 @@ public class lab1 {
 			writer.write("Maximum points = "+max);
 		
 		    reader.close();
-		    
-            writer.close();
-            
-        }	
-        catch(FileNotFoundException ex) {
-            System.out.println(
-                "Unable to open file");                
-        }
-        catch(IOException ex) {
-         
-            ex.printStackTrace();
-        }
+	            writer.close();
+            }
+        	catch(IOException ex) {
+            	ex.printStackTrace();
+        	}
 	}
-
 }
