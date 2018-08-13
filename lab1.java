@@ -19,6 +19,7 @@ public class lab1 {
             writer.newLine();
             writer.write("--------  --  -----------------------------  ---  --  ---  --  ---  ---  --");
             writer.newLine();
+                   
             int data[]=new int [15];
 			while((thisLine=reader.readLine())!=null)
 			 {
@@ -42,6 +43,7 @@ public class lab1 {
 				
 				pct=((Pts*100)/420);		//pct is percentage
 				totper=totper+pct;			//total percentage of class for finding average percentage
+			
 				
 				if(Math.round(pct)>=90)			//Math.round for rounding off to close numeral
 				{grade='A';
@@ -62,14 +64,10 @@ public class lab1 {
 				else {
 					grade='F';
 					f++;
-				}
-				if(data[0]/10000000<1) {			//to check if roll no if starting with 0
-					pre="0"+Integer.toString(data[0]);			//then we add 0 and add it to roll no converting it to string
-					writer.write(pre+"  ");
-					}
-				else
-					writer.write(data[0]+"  ");
-					
+				}						
+				
+				check(data,pre,writer);
+				
 				writer.write(data[1]+"  ");
 				for(int i=2;i<12;i++) {
 					if(data[i]/10<1)
@@ -87,8 +85,9 @@ public class lab1 {
 				writer.write(Math.round(Pts)+"  ");
 				writer.write(" "+Math.round(pct)+"  ");
 				writer.write(" "+grade);
-				writer.newLine();	
+				writer.newLine();				
 			 }
+
 			writer.newLine();
 			writer.write("-----Summary of Report-----");
 			writer.newLine();
@@ -107,10 +106,27 @@ public class lab1 {
 			writer.write("Maximum points = "+max);
 		
 		    reader.close();
-	            writer.close();
+            		writer.close();
             }
-        	catch(IOException ex) {
-            	ex.printStackTrace();
-        	}
+        
+        catch(IOException ex) {
+            ex.printStackTrace();
+        }
 	}
+
+	static void check(int indata[], String pre,BufferedWriter writer)
+    {
+		try {
+		 if(indata[0]/10000000<1) {	//to check if roll no if starting with 0
+				pre="0"+Integer.toString(indata[0]);			//then we add 0 and add it to roll no converting it to string
+				writer.write(pre+"  ");
+				}
+			else
+				writer.write(indata[0]+"  ");
+		}
+		catch(IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
 }
